@@ -87,6 +87,7 @@ const NewTaskModal: React.FC<NewTaskModalProps> = ({
         responsible: RESPONSIBLE_OPTIONS.find(option => option.id === responsible)?.name || '',
         date: date ? format(date, 'yyyy-MM-dd') : '',
       });
+      if (!isSubmitting) resetForm();
     } else {
       toast.error('Por favor, preencha todos os campos obrigatórios');
     }

@@ -86,6 +86,7 @@ export const KanbanProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     toast({
       title: "Tarefa criada",
       description: "Sua nova tarefa foi criada com sucesso!",
+      duration: 3000
     });
   };
 
@@ -152,6 +153,7 @@ export const KanbanProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     toast({
       title: "Tarefa movida",
       description: `A tarefa foi movida para "${targetColumn.title}".`,
+      duration: 3000
     });
   };
 
