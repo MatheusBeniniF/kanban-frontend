@@ -43,7 +43,7 @@ const KanbanBoardContent: React.FC = () => {
     setSelectedTaskId(undefined);
   };
   
-  const handleSaveNewTask = async (taskData: any) => {
+  const handleSaveNewTask = async (taskData) => {
     await handleCreateTask(taskData);
     handleCloseNewTaskModal();
   };

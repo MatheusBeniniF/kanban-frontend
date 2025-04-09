@@ -29,20 +29,15 @@ const ViewTaskModal: React.FC<ViewTaskModalProps> = ({ isOpen, onClose, taskId }
   });
 
   // Format date to Brazilian format (DD/MM/YYYY)
-  const formattedDate = task?.date ? 
-    format(new Date(task.date), 'dd/MM/yyyy', { locale: ptBR }) : '';
+  const formattedDate = task ? format(new Date(task[0].date), "dd/MM/yyyy", {
+    locale: ptBR,
+  }) : '';
 
   return (
     <Dialog open={isOpen} onOpenChange={() => onClose()}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader className="flex justify-between items-center">
           <DialogTitle className="text-xl font-semibold">Detalhes da Tarefa</DialogTitle>
-          <button 
-            onClick={onClose}
-            className="h-8 w-8 rounded-full flex items-center justify-center hover:bg-gray-100"
-          >
-            <X size={18} />
-          </button>
         </DialogHeader>
         
         {isLoading ? (
@@ -56,12 +51,12 @@ const ViewTaskModal: React.FC<ViewTaskModalProps> = ({ isOpen, onClose, taskId }
         ) : task ? (
           <div className="space-y-4 py-2">
             <div>
-              <h3 className="text-lg font-semibold text-kanban-text-primary">{task.title}</h3>
+              <h3 className="text-lg font-semibold text-kanban-text-primary">{task[0].title}</h3>
             </div>
             
             <div>
               <h4 className="text-sm font-medium text-kanban-text-secondary mb-1">Descrição</h4>
-              <p className="text-kanban-text-primary whitespace-pre-wrap">{task.description}</p>
+              <p className="text-kanban-text-primary max-h-40 overflow-y-auto whitespace-pre-wrap">{task[0].description}</p>
             </div>
             
             <div className="flex flex-col gap-3">
@@ -69,7 +64,7 @@ const ViewTaskModal: React.FC<ViewTaskModalProps> = ({ isOpen, onClose, taskId }
                 <h4 className="text-sm font-medium text-kanban-text-secondary mb-1">Responsável</h4>
                 <div className="flex items-center gap-2">
                   <UserCircle size={20} className="text-kanban-text-secondary" />
-                  <span className="text-kanban-text-primary">{task.responsible}</span>
+                  <span className="text-kanban-text-primary">{task[0].responsible[0]}</span>
                 </div>
               </div>
               

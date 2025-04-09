@@ -97,12 +97,6 @@ const NewTaskModal: React.FC<NewTaskModalProps> = ({
       <DialogContent className="sm:max-w-md">
         <DialogHeader className="flex justify-between items-center">
           <DialogTitle className="text-xl font-semibold">Criar Tarefa</DialogTitle>
-          <button 
-            onClick={handleClose}
-            className="h-8 w-8 rounded-full flex items-center justify-center hover:bg-gray-100"
-          >
-            <X size={18} />
-          </button>
         </DialogHeader>
         
         <form onSubmit={handleSubmit} className="space-y-4 py-2">
