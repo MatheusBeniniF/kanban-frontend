@@ -53,7 +53,6 @@
 
 .kanban-column {
   min-width: 280px;
-  max-width: 280px;
   height: fit-content;
 }
 
@@ -79,4 +78,13 @@
 
 .kanban-scrollbar::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-400;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }

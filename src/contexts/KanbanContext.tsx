@@ -8,25 +8,21 @@ const initialColumns: ColumnData[] = [
   {
     id: 'ideias',
     title: 'Ideias',
-    color: '#7B61FF',
     tasks: []
   },
   {
     id: 'a-fazer',
     title: 'A Fazer',
-    color: '#FFCB1F',
     tasks: []
   },
   {
     id: 'fazendo',
     title: 'Fazendo',
-    color: '#49AAFF',
     tasks: []
   },
   {
     id: 'feito',
     title: 'Feito',
-    color: '#55B938',
     tasks: []
   }
 ];
