@@ -3,7 +3,7 @@ export interface Task {
   id: string;
   title: string;
   description: string;
-  responsible: string;
+  responsibles: string[];
   date: string;
   status: 'ideias' | 'a-fazer' | 'fazendo' | 'feito';
 }

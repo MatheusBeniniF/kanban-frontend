@@ -77,7 +77,6 @@ const KanbanBoardContent: React.FC = () => {
   );
 };
 
-// Wrapper component that provides the KanbanContext
 const KanbanBoard: React.FC = () => {
   return (
     <KanbanProvider>

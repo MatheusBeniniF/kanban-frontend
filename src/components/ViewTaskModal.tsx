@@ -28,7 +28,6 @@ const ViewTaskModal: React.FC<ViewTaskModalProps> = ({ isOpen, onClose, taskId }
     enabled: isOpen && !!taskId,
   });
 
-  // Format date to Brazilian format (DD/MM/YYYY)
   const formattedDate = task ? format(new Date(task[0].date), "dd/MM/yyyy", {
     locale: ptBR,
   }) : '';
@@ -37,9 +36,11 @@ const ViewTaskModal: React.FC<ViewTaskModalProps> = ({ isOpen, onClose, taskId }
     <Dialog open={isOpen} onOpenChange={() => onClose()}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader className="flex justify-between items-center">
-          <DialogTitle className="text-xl font-semibold">Detalhes da Tarefa</DialogTitle>
+          <DialogTitle className="text-xl font-semibold">
+            Detalhes da Tarefa
+          </DialogTitle>
         </DialogHeader>
-        
+
         {isLoading ? (
           <div className="h-40 flex items-center justify-center">
             <Loader2 className="h-8 w-8 animate-spin text-kanban-blue" />
@@ -51,28 +52,53 @@ const ViewTaskModal: React.FC<ViewTaskModalProps> = ({ isOpen, onClose, taskId }
         ) : task ? (
           <div className="space-y-4 py-2">
             <div>
-              <h3 className="text-lg font-semibold text-kanban-text-primary">{task[0].title}</h3>
+              <h3 className="text-lg font-semibold text-kanban-text-primary">
+                {task[0].title}
+              </h3>
             </div>
-            
+
             <div>
-              <h4 className="text-sm font-medium text-kanban-text-secondary mb-1">Descrição</h4>
-              <p className="text-kanban-text-primary max-h-40 overflow-y-auto whitespace-pre-wrap">{task[0].description}</p>
+              <h4 className="text-sm font-medium text-kanban-text-secondary mb-1">
+                Descrição
+              </h4>
+              <p className="text-kanban-text-primary max-h-40 overflow-y-auto whitespace-pre-wrap">
+                {task[0].description}
+              </p>
             </div>
-            
+
             <div className="flex flex-col gap-3">
               <div>
-                <h4 className="text-sm font-medium text-kanban-text-secondary mb-1">Responsável</h4>
-                <div className="flex items-center gap-2">
-                  <UserCircle size={20} className="text-kanban-text-secondary" />
-                  <span className="text-kanban-text-primary">{task[0].responsible[0]}</span>
+                <h4 className="text-sm font-medium text-kanban-text-secondary mb-1">
+                  Responsáveis
+                </h4>
+                <div className="flex flex-wrap items-center gap-2">
+                  {task[0].responsible?.map((name: string, idx: number) => (
+                    <div
+                      key={idx}
+                      className="flex items-center gap-1 text-kanban-text-primary bg-kanban-gray px-2 py-1 rounded-full text-sm"
+                    >
+                      <UserCircle
+                        size={16}
+                        className="text-kanban-text-secondary"
+                      />
+                      {name}
+                    </div>
+                  ))}
                 </div>
               </div>
-              
+
               <div>
-                <h4 className="text-sm font-medium text-kanban-text-secondary mb-1">Data Limite</h4>
+                <h4 className="text-sm font-medium text-kanban-text-secondary mb-1">
+                  Data Limite
+                </h4>
                 <div className="flex items-center gap-2">
-                  <CalendarIcon size={20} className="text-kanban-text-secondary" />
-                  <span className="text-kanban-text-primary">{formattedDate}</span>
+                  <CalendarIcon
+                    size={20}
+                    className="text-kanban-text-secondary"
+                  />
+                  <span className="text-kanban-text-primary">
+                    {formattedDate}
+                  </span>
                 </div>
               </div>
             </div>

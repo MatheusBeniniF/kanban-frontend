@@ -70,6 +70,7 @@ export default {
 					purple: '#7B61FF',
 					red: '#FF4949',
 					gray: '#F8F9FA',
+					label: '#ADB8CB',
 					'text-primary': '#212529',
 					'text-secondary': '#6C757D',
 					'border-light': '#E9ECEF',

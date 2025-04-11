@@ -1,30 +1,29 @@
-import React, { createContext, useState, useContext } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { ColumnData, ColumnType, Task } from '@/lib/types';
-import { useToast } from '@/hooks/use-toast';
+import React, { createContext, useState, useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { ColumnData, ColumnType, Task } from "@/lib/types";
+import { useToast } from "@/hooks/use-toast";
 
-// Initial column data
 const initialColumns: ColumnData[] = [
   {
-    id: 'ideias',
-    title: 'Ideias',
-    tasks: []
+    id: "ideias",
+    title: "Ideias",
+    tasks: [],
   },
   {
-    id: 'a-fazer',
-    title: 'A Fazer',
-    tasks: []
+    id: "a-fazer",
+    title: "A Fazer",
+    tasks: [],
   },
   {
-    id: 'fazendo',
-    title: 'Fazendo',
-    tasks: []
+    id: "fazendo",
+    title: "Fazendo",
+    tasks: [],
   },
   {
-    id: 'feito',
-    title: 'Feito',
-    tasks: []
-  }
+    id: "feito",
+    title: "Feito",
+    tasks: [],
+  },
 ];
 
 interface KanbanContextType {
@@ -48,41 +47,42 @@ interface KanbanContextType {
 
 const KanbanContext = createContext<KanbanContextType | undefined>(undefined);
 
-export const KanbanProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const KanbanProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [columns, setColumns] = useState<ColumnData[]>(initialColumns);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
   const { toast } = useToast();
 
-  const handleCreateTask = async (taskData: Omit<Task, 'id' | 'status'>) => {
+  const handleCreateTask = async (taskData: Omit<Task, "id" | "status">) => {
     setIsSubmitting(true);
-    
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
+    //
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     const newTask: Task = {
       ...taskData,
       id: uuidv4(),
-      status: 'ideias' // New tasks always go to the "Ideias" column
+      status: "ideias",
     };
-    
-    // Add the new task to the "Ideias" column
-    const newColumns = columns.map(column => {
-      if (column.id === 'ideias') {
+
+    const newColumns = columns.map((column) => {
+      if (column.id === "ideias") {
         return {
           ...column,
-          tasks: [...column.tasks, newTask]
+          tasks: [...column.tasks, newTask],
         };
       }
       return column;
     });
-    
+
     setColumns(newColumns);
     setIsSubmitting(false);
     toast({
       title: "Tarefa criada",
       description: "Sua nova tarefa foi criada com sucesso!",
-      duration: 3000
+      duration: 3000,
     });
   };
 
@@ -113,7 +113,7 @@ export const KanbanProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     targetColumnId: ColumnType
   ) => {
     console.log(sourceColumnId, targetColumnId);
-    if (sourceColumnId === targetColumnId) return; // Evita duplicação desnecessária
+    if (sourceColumnId === targetColumnId) return;
     const sourceColumn = columns.find((col) => col.id === sourceColumnId);
     const targetColumn = columns.find((col) => col.id === targetColumnId);
     if (!sourceColumn || !targetColumn) return;
@@ -149,7 +149,7 @@ export const KanbanProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     toast({
       title: "Tarefa movida",
       description: `A tarefa foi movida para "${targetColumn.title}".`,
-      duration: 3000
+      duration: 3000,
     });
   };
 
@@ -175,7 +175,7 @@ export const KanbanProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 export const useKanban = (): KanbanContextType => {
   const context = useContext(KanbanContext);
   if (context === undefined) {
-    throw new Error('useKanban must be used within a KanbanProvider');
+    throw new Error("useKanban must be used within a KanbanProvider");
   }
   return context;
 };
