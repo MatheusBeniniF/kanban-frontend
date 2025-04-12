@@ -14,7 +14,7 @@ interface TaskCardProps {
 
 const TaskCard = ({ task, onClick, className, columnId }: TaskCardProps) => {
   const today = new Date();
-  const dueDate = task.date ? new Date(task.date) : null;
+  const dueDate = task.date ? new Date(task.date + "T00:00:00") : null;
 
   let statusText = "";
   let statusColor = "";
@@ -80,7 +80,7 @@ const TaskCard = ({ task, onClick, className, columnId }: TaskCardProps) => {
       )}
 
       <div className="flex flex-wrap gap-2">
-        {task.members?.map((member, idx) => (
+        {task.responsibles?.map((member, idx) => (
           <span
             key={idx}
             className="bg-blue-500 text-white text-xs font-medium px-3 py-1 rounded-full"

@@ -136,7 +136,7 @@ const NewTaskModal: React.FC<NewTaskModalProps> = ({
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               className={cn(
-                "rounded-lg border-[#ADB8CB]",
+                "rounded-full border-[#ADB8CB]",
                 errors.title && "border-red-500"
               )}
             />
@@ -180,7 +180,7 @@ const NewTaskModal: React.FC<NewTaskModalProps> = ({
                   variant="outline"
                   role="combobox"
                   className={cn(
-                    "w-full justify-between rounded-lg border-[#ADB8CB]",
+                    "w-full justify-between rounded-full border-[#ADB8CB]",
                     errors.responsibles && "border-red-500"
                   )}
                 >
@@ -289,7 +289,7 @@ const NewTaskModal: React.FC<NewTaskModalProps> = ({
                   Criando...
                 </>
               ) : (
-                "Adicioanar tarefa"
+                "Adicionar tarefa"
               )}
             </Button>
           </div>
