@@ -22,11 +22,10 @@ export const useKanbanDnd = () => {
     // Find source column and index
     let sourceColumnId: ColumnType | null = null;
     let fromIndex: number | null = null;
-    console.log('columns',columns)
+
 
     for (const column of columns) {
       const idx = column.tasks.findIndex(task => task.id === taskId);
-      console.log('sourceColumnId',column.id)
       if (idx !== -1) {
         sourceColumnId = column.id;
         fromIndex = idx;
@@ -42,7 +41,6 @@ export const useKanbanDnd = () => {
 
     for (const column of columns) {
       const idx = column.tasks.findIndex(task => task.id === over.id);
-      console.log('targetColumnId',column.id)
       if (idx !== -1) {
         targetColumnId = column.id;
         toIndex = idx;

@@ -16,14 +16,18 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({
   const { setNodeRef } = useDroppable({ id: column.id });
 
   return (
-    <div key={column.id} className="kanban-column flex-shrink-0 w-[354px]">
-      <div className="p-4 flex items-center gap-2 border-b border-kanban-border-light">
+    <div
+      key={column.id}
+      className="kanban-column flex-shrink-0 min-w-[300px] w-[350px]"
+    >
+      <div className="p-4 flex flex-col items-start gap-2 border-b border-kanban-border-light">
         <h2 className="font-semibold text-kanban-text-primary">
           {column.title}
         </h2>
         {column.tasks.length > 0 && (
-          <div className="ml-auto bg-white text-xs font-medium px-2 py-1 rounded-full text-kanban-text-secondary">
-            {column.tasks.length}
+          <div className="text-xs font-medium text-kanban-text-secondary">
+            {column.tasks.length}{" "}
+            {column.tasks.length > 1 ? "tarefas" : "tarefa"}
           </div>
         )}
       </div>

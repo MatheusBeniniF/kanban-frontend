@@ -10,7 +10,7 @@ const KanbanColumns: React.FC<KanbanColumnsProps> = ({ onTaskClick }) => {
   const { columns } = useKanban();
 
   return (
-    <div className="flex gap-4 pb-4 overflow-x-auto kanban-scrollbar  whitespace-nowrap hide-scrollbar">
+    <div className="flex gap-4 pb-4 whitespace-nowrap">
       {columns.map((column) => (
         <DroppableColumn
           key={column.id}

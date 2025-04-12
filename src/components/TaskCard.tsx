@@ -18,9 +18,8 @@ const TaskCard = ({ task, onClick, className, columnId }: TaskCardProps) => {
 
   let statusText = "";
   let statusColor = "";
-  
+
   const isDone = columnId === "feito";
-  console.log(columnId);
   const isLate = dueDate && isBefore(dueDate, today);
 
   if (dueDate) {
@@ -83,7 +82,7 @@ const TaskCard = ({ task, onClick, className, columnId }: TaskCardProps) => {
         {task.responsibles?.map((member, idx) => (
           <span
             key={idx}
-            className="bg-blue-500 text-white text-xs font-medium px-3 py-1 rounded-full"
+            className="bg-blue-500 text-white text-xs font-medium px-3 py-1 rounded-lg"
           >
             {member}
           </span>

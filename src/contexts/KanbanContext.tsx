@@ -43,6 +43,7 @@ interface KanbanContextType {
     fromIndex: number,
     toIndex: number
   ) => void;
+  handleGetTask: (id: string) => Task | null;
 }
 
 const KanbanContext = createContext<KanbanContextType | undefined>(undefined);
@@ -58,7 +59,6 @@ export const KanbanProvider: React.FC<{ children: React.ReactNode }> = ({
   const handleCreateTask = async (taskData: Omit<Task, "id" | "status">) => {
     setIsSubmitting(true);
 
-    //
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const newTask: Task = {
@@ -112,7 +112,6 @@ export const KanbanProvider: React.FC<{ children: React.ReactNode }> = ({
     sourceColumnId: ColumnType,
     targetColumnId: ColumnType
   ) => {
-    console.log(sourceColumnId, targetColumnId);
     if (sourceColumnId === targetColumnId) return;
     const sourceColumn = columns.find((col) => col.id === sourceColumnId);
     const targetColumn = columns.find((col) => col.id === targetColumnId);
@@ -153,6 +152,14 @@ export const KanbanProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
+  const handleGetTask = (id: string) => {
+    const task = columns
+      .map((col) => col.tasks.find((task) => task.id === id))
+      .find((task) => task);
+    if (!task) return null;
+    return task;
+  };
+
   return (
     <KanbanContext.Provider
       value={{
@@ -164,6 +171,7 @@ export const KanbanProvider: React.FC<{ children: React.ReactNode }> = ({
         handleCreateTask,
         moveTask,
         reorderTask,
+        handleGetTask,
       }}
     >
       {children}
