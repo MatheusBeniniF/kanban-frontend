@@ -8,11 +8,10 @@ import CheckIcon from "@/components/icons/check.svg";
 interface TaskCardProps {
   task: Task;
   onClick: (task: Task) => void;
-  className?: string;
   columnId?: string;
 }
 
-const TaskCard = ({ task, onClick, className, columnId }: TaskCardProps) => {
+const TaskCard = ({ task, onClick, columnId }: TaskCardProps) => {
   const today = new Date();
   const dueDate = task.date ? new Date(task.date + "T00:00:00") : null;
 
@@ -50,8 +49,7 @@ const TaskCard = ({ task, onClick, className, columnId }: TaskCardProps) => {
     <div
       className={cn(
         "relative bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200 w-full border",
-        isDone ? "border-green-600" : "border-kanban-border-light",
-        className
+        isDone ? "border-green-600" : "border-kanban-border-light"
       )}
       onClick={() => onClick(task)}
     >

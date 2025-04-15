@@ -14,6 +14,13 @@ const exampleTask: Task = {
 const meta: Meta<typeof TaskCard> = {
   title: "Kanban/TaskCard",
   component: TaskCard,
+  decorators: [
+    (Story) => (
+      <div className="p-3">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
@@ -24,5 +31,6 @@ export const Default: Story = {
   args: {
     task: exampleTask,
     onClick: () => alert("Card clicado!"),
+    columnId: "feito",
   },
 };

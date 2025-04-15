@@ -97,7 +97,7 @@ const KanbanBoardContent: React.FC = () => {
     <div className="flex flex-col h-full">
       <KanbanHeader onCreateTask={handleOpenNewTaskModal} />
 
-      <div className="flex justify-end items-center gap-4 mt-4 mb-2 px-2 md:px-[12rem]">
+      <div className="flex justify-end items-center gap-4 mt-4 mb-2 px-2 lg:px-[12rem]">
         <button
           onClick={() => scroll("left")}
           disabled={!canScrollLeft}

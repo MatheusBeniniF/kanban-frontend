@@ -12,7 +12,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    task: {},
-    onClick: () => {}
+    task: {
+      "title": "testando title",
+      "description": "testando description",
+      "date": "2025-04-16",
+      "responsibles": ["abc ", "abc"],
+      "status": "feito"
+    },
+
+    onClick: () => {},
+    columnId: ""
   }
 };
